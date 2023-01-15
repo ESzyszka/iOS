@@ -73,10 +73,10 @@ class Donut{
 var donut_one = Donut()
 var donut_two = donut_one
 
-//This print will return chocolate
+/* This print will return chocolate
 print(donut_one.icing)
 
-//However, if we initiate the second donut to lemon when we print the value the donut_one will be overwritten 
+/* However, if we initiate the second donut to lemon when we print the value the donut_one will be overwritten 
 donut_two.icing = "lemon"
 
 print(" The first donut icing is  \(donut_one.icing)")
@@ -88,4 +88,4 @@ print(" The second donut icing is  \(donut_one.icing)")
  
  ### String interpolation in swift
  
- print(" The first donut icing is  \(donut_one.icing)")
+ ```print(" The first donut icing is  \(donut_one.icing)")```
