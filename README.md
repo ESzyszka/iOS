@@ -92,3 +92,10 @@ print(" The second donut icing is  \(donut_one.icing)")
  
  
  ### Swift switch statements
+
+
+### What is a p list in Swift 
+
+When you need authorization/ location or any private information from the user, you need to change the p list. You can find it in the following folder:
+
+<img width="1418" alt="Screen Shot 2023-01-15 at 12 54 15" src="https://user-images.githubusercontent.com/79250896/212522099-32f06036-cc21-43e4-b29e-617fb9c1b1a2.png">
