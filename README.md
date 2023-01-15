@@ -27,8 +27,8 @@ struct ContentView_Previews: PreviewProvider {
 
 ### How to add a button that will bring you to another screen 
 
-NavigationView
-NavigationLink
+```NavigationView``` < br/>
+```NavigationLink```
 
 ### What is the difference between ```struct``` and ```class```
 
