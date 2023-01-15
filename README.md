@@ -89,3 +89,6 @@ print(" The second donut icing is  \(donut_one.icing)")
  ### String interpolation in swift
  
  ```print(" The first donut icing is  \(donut_one.icing)")```
+ 
+ 
+ ### Swift switch statements
