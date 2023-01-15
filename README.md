@@ -45,19 +45,19 @@ class SomeClass {
 
 ```Value type``` : each instance keeps a unique copy of the data in memory  
 
-/*:
+
   1. Structures
   2. Enumerations
   3. Strings
   4. Integers
   5. Dictionaries
   6.Arrays
- */
+
 
 ```Reference type``` : each instance shares a single copy of data
 
-/*:
+
   1. Class
   2. Closure
   3. Function
- */
+ 
