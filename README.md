@@ -60,4 +60,32 @@ class SomeClass {
   1. Class
   2. Closure
   3. Function
+
+What this mean in practice is that when we create a class and assign a new value to a property the old instances of the class will be overwritten:
+
+```
+import UIKit 
+
+class Donut{
+    var icing = "chocolate"
+}
+
+var donut_one = Donut()
+var donut_two = donut_one
+
+//This print will return chocolate
+print(donut_one.icing)
+
+//However, if we initiate the second donut to lemon when we print the value the donut_one will be overwritten 
+donut_two.icing = "lemon"
+
+print(" The first donut icing is  \(donut_one.icing)")
+print(" The second donut icing is  \(donut_one.icing)")
+
+
+```
  
+ 
+ ### String interpolation in swift
+ 
+ print(" The first donut icing is  \(donut_one.icing)")
