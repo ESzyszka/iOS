@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreLocation
 import MapKit
+import CoreData
 
 
 
@@ -50,7 +51,7 @@ struct ContentView: View {
               
                 NavigationLink(destination: DetailView()) {
                                     HStack {
-                                        Image("スタート").resizable().frame(width: 100, height: 100)
+                                        Image("start").resizable().frame(width: 100, height: 100)
                                         Text("スタート")
                                     }
                                 }
@@ -76,27 +77,161 @@ struct ContentView: View {
 
 
 
+class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
+    var locationManager = CLLocationManager()
+    var longitude: Double = 0.0
+    var latitude: Double = 0.0
+    
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        self.longitude = location.coordinate.longitude
+        self.latitude = location.coordinate.latitude
+    }
+}
 
 
 //Second screen
 struct DetailView: View {
-    
-    
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:37.331516, longitude:-121.891054 ), span:  MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+    @StateObject private var viewModel = ContentViewModel()
+    @State var longitude: Double = 0.0
+    @State var latitude: Double = 0.0
+    @ObservedObject var locationManager = LocationManager()
     
     
     var body: some View {
-        Text("This is the Detail View")
-        Map(coordinateRegion: $region, showsUserLocation: true)
         
+        Text("Longitude: \(locationManager.longitude)")
+        Text("Latitude: \(locationManager.latitude) ")
+    }
         
+        /*
+        Map(coordinateRegion: $viewModel.region, showsUserLocation:  true).accentColor(Color(.systemPink))
+            .onAppear{
+            viewModel.checkIfLocationServiceIsEnabled()
+        } */
         
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Trying core data*/
+struct CoreDataStack {
+    static var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "ModelName")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    static var context: NSManagedObjectContext { return persistentContainer.viewContext }
+}
+
+/* core data end*/
+
+
+
+
+
+
+
+
+
+
+
+final class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDelegate{
+    
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:37.331516, longitude:-121.891054 ), span:  MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+    
+    
+    var locationManager: CLLocationManager?
+    
+    
+    func checkIfLocationServiceIsEnabled(){
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager = CLLocationManager()
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager!.delegate = self
+            locationManager?.startUpdatingLocation()
+            
+        }else{
+            print("Show an alert that location tracking is switched off")
+        }
+    }
+    
+    /*
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation], fromLocation oldLocation: CLLocation!) {
+        guard let location = locationManager?.location else { return }
+        let context = CoreDataStack.context
+        let userLocation = UserLocation(context: context)
+        userLocation.latitude = location.coordinate.latitude
+        userLocation.longitude = location.coordinate.longitude
+
+    }
+   */
+         
+    
+   
+    
+    
+    
+    
+    
+    /* Checking if the user has the localization authorization on the phone*/
+    func checkLocationAuthorization(){
+        guard let locationManager = locationManager else {
+            return
+        }
         
+        switch locationManager.authorizationStatus{
+            
+        case.notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case.restricted:
+            print("Your location is restricted")
+        case.denied:
+            print("Go to settings to allow location permission")
+        case.authorizedAlways:
+            region = MKCoordinateRegion(center: locationManager.location!.coordinate,                                               span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        case.authorizedWhenInUse:
+            region = MKCoordinateRegion(center: locationManager.location!.coordinate,                                               span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        @unknown default:
+            break
+        }
+    }
+    
+    /* This function checks if the user changed the permissions for localization*/
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
     }
 }
 
+
+
+//Start the app from the first screen
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+

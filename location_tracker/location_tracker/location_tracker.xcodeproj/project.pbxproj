@@ -17,6 +17,8 @@
 		945307282972A6B300F49AA8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945306FE2972A6B300F49AA8 /* ContentView.swift */; };
 		945307292972A6B300F49AA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945306FF2972A6B300F49AA8 /* Assets.xcassets */; };
 		9453072A2972A6B300F49AA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945306FF2972A6B300F49AA8 /* Assets.xcassets */; };
+		94CF572929743EFC002C2533 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94CF572729743EFC002C2533 /* Model.xcdatamodeld */; };
+		94CF572A29743EFC002C2533 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94CF572729743EFC002C2533 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 		9453071D2972A6B300F49AA8 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		945307212972A6B300F49AA8 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		945307232972A6B300F49AA8 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		94CF572829743EFC002C2533 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 			children = (
 				945306FD2972A6B300F49AA8 /* location_trackerApp.swift */,
 				945306FE2972A6B300F49AA8 /* ContentView.swift */,
+				94CF572729743EFC002C2533 /* Model.xcdatamodeld */,
 				945306FF2972A6B300F49AA8 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -301,6 +305,7 @@
 			files = (
 				945307272972A6B300F49AA8 /* ContentView.swift in Sources */,
 				945307252972A6B300F49AA8 /* location_trackerApp.swift in Sources */,
+				94CF572929743EFC002C2533 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +315,7 @@
 			files = (
 				945307282972A6B300F49AA8 /* ContentView.swift in Sources */,
 				945307262972A6B300F49AA8 /* location_trackerApp.swift in Sources */,
+				94CF572A29743EFC002C2533 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +474,7 @@
 				DEVELOPMENT_TEAM = P7LBY777AQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location for the user experiment ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -498,6 +505,7 @@
 				DEVELOPMENT_TEAM = P7LBY777AQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location for the user experiment ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -703,6 +711,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		94CF572729743EFC002C2533 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				94CF572829743EFC002C2533 /* Model.xcdatamodel */,
+			);
+			currentVersion = 94CF572829743EFC002C2533 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 945306F82972A6B200F49AA8 /* Project object */;
 }

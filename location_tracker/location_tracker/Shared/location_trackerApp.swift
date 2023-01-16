@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct location_trackerApp: App {
+ 
     var body: some Scene {
         WindowGroup {
             ContentView()
